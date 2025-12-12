@@ -1,30 +1,29 @@
 import express from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger";
+
+import { authRouter } from "./routes/auth.routes";
 
 export function createApp() {
     const app = express();
 
-    // Middlewares
     app.use(cors());
     app.use(express.json());
 
-    // Healthcheck
-    app.get("/health", (_req, res) => {
-        res.status(200).json({ status: "ok" });
-    });
+    // Health check endpoint
+    app.get("/health", (_req, res) => res.json({ status: "ok" }));
 
-    // TODO: future routes
-    // app.use("/products", productsRouter);
-    // app.use("/cart", cartRouter);
-    // app.use("/wishlist", wishlistRouter);
+    // Swagger documentation endpoint
+    app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-    // 404
-    app.use((_req, res) => {
-        res.status(404).json({ error: "Not found" });
-    });
+    // Authentication routes
+    app.use(authRouter);
 
-    // Error handling
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // 404 handler
+    app.use((_req, res) => res.status(404).json({ error: "Not found" }));
+
+    // Global error handler
     app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
         console.error(err);
         res.status(500).json({ error: "Internal server error" });
