@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "bdadc544-1442-48a3-9bf9-6e74fc380a00",
+    "username": "admin",
+    "firstname": "Admin",
+    "email": "admin@admin.com",
+    "passwordHash": "$2b$10$jynaC2rEYCuiDfcA7JFNbevZwXL5rd7gfz.S0VunELEBeZ0J3SgBC",
+    "createdAt": 1765545537467
+  }
+]

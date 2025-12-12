@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 import { JsonStore } from "../lib/jsonStore";
 import type { User } from "../models/user.model";
 
-const router = Router();
+export const authRouter = Router();
 
 const usersStore = new JsonStore<User>(
     path.join(__dirname, "../data/users.json")
@@ -43,7 +43,7 @@ const usersStore = new JsonStore<User>(
  *       409:
  *         description: Email already exists
  */
-router.post("/account", async (req, res) => {
+authRouter.post("/account", async (req, res) => {
     const { username, firstname, email, password } = req.body ?? {};
 
     if (!username || !firstname || !email || !password) {
@@ -98,7 +98,7 @@ router.post("/account", async (req, res) => {
  *       401:
  *         description: Invalid credentials
  */
-router.post("/token", async (req, res) => {
+authRouter.post("/token", async (req, res) => {
     const { email, password } = req.body ?? {};
 
     if (!email || !password) {
@@ -134,5 +134,3 @@ router.post("/token", async (req, res) => {
 
     return res.json({ token });
 });
-
-export const authRouter = router;

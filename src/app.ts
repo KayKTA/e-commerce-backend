@@ -4,6 +4,9 @@ import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./swagger";
 
 import { authRouter } from "./routes/auth.routes";
+import { productsRouter } from "./routes/products.routes";
+import { cartRouter } from "./routes/cart.routes";
+import { wishlistRouter } from "./routes/wishlist.route";
 
 export function createApp() {
     const app = express();
@@ -17,8 +20,11 @@ export function createApp() {
     // Swagger documentation endpoint
     app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-    // Authentication routes
-    app.use(authRouter);
+    // API routes
+    app.use("/auth", authRouter);
+    app.use("/products", productsRouter);
+    app.use("/cart", cartRouter);
+    app.use("/wishlist", wishlistRouter);
 
     // 404 handler
     app.use((_req, res) => res.status(404).json({ error: "Not found" }));
