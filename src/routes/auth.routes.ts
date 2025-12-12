@@ -1,16 +1,15 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import path from "path";
 import crypto from "crypto";
 
 import { JsonStore } from "../lib/jsonStore";
 import type { User } from "../models/user.model";
-import { dataPath } from "../lib/dataPath";
+import { USERS_PATH } from "../config/paths";
 
 export const authRouter = Router();
 
-const usersStore = new JsonStore<User>(dataPath("users.json"));
+const usersStore = new JsonStore<User>(USERS_PATH);
 
 /**
  * @swagger

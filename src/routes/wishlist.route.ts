@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { JsonStore } from "../lib/jsonStore";
 import { requireAuth } from "../middlewares/auth.middleware";
-import { dataPath } from "../lib/dataPath";
 import type { Wishlist } from "../models/wishlist.model";
 import type { Product } from "../models/product.model";
+import { PRODUCTS_PATH, WISHLISTS_PATH } from "../config/paths";
 
 export const wishlistRouter = Router();
 
-const wishlistsStore = new JsonStore<Wishlist>(dataPath("wishlists.json"));
-const productsStore = new JsonStore<Product>(dataPath("products.json"));
+const wishlistsStore = new JsonStore<Wishlist>(WISHLISTS_PATH);
+const productsStore = new JsonStore<Product>(PRODUCTS_PATH);
 
 /**
  * @swagger

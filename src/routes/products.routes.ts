@@ -3,12 +3,11 @@ import { JsonStore } from "../lib/jsonStore";
 import { requireAuth } from "../middlewares/auth.middleware";
 import { requireAdmin } from "../middlewares/admin.middleware";
 import type { Product } from "../models/product.model";
-import path from "path";
-import { dataPath } from "../lib/dataPath";
+import { PRODUCTS_PATH } from "../config/paths";
 
 export const productsRouter = Router();
 
-const productsStore = new JsonStore<Product>(dataPath("products.json"));
+const productsStore = new JsonStore<Product>(PRODUCTS_PATH);
 
 /**
  * @swagger

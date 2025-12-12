@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { JsonStore } from "../lib/jsonStore";
 import { requireAuth } from "../middlewares/auth.middleware";
-import { dataPath } from "../lib/dataPath";
 import type { Cart } from "../models/cart.model";
 import type { Product } from "../models/product.model";
+import { CARTS_PATH, PRODUCTS_PATH } from "../config/paths";
 
 export const cartRouter = Router();
 
-const cartsStore = new JsonStore<Cart>(dataPath("carts.json"));
-const productsStore = new JsonStore<Product>(dataPath("products.json"));
+const cartsStore = new JsonStore<Cart>(CARTS_PATH);
+const productsStore = new JsonStore<Product>(PRODUCTS_PATH);
 
 function assertPositiveInt(n: unknown): n is number {
     return typeof n === "number" && Number.isInteger(n) && n > 0;
