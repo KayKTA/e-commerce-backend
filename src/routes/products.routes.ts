@@ -4,9 +4,11 @@ import { requireAuth } from "../middlewares/auth.middleware";
 import { requireAdmin } from "../middlewares/admin.middleware";
 import type { Product } from "../models/product.model";
 import path from "path";
+import { dataPath } from "../lib/dataPath";
 
 export const productsRouter = Router();
-const productsStore = new JsonStore<Product>(path.join(__dirname, "../data/products.json"));
+
+const productsStore = new JsonStore<Product>(dataPath("products.json"));
 
 /**
  * @swagger
@@ -49,7 +51,7 @@ productsRouter.get("/", requireAuth, async (_req, res) => {
  *       500:
  *         description: Internal server error
  */
-productsRouter.get("/products/:id", requireAuth, async (req, res) => {
+productsRouter.get("/:id", requireAuth, async (req, res) => {
     const { id } = req.params;
     try {
         const products = await productsStore.readAll();

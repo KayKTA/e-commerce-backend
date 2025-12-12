@@ -9,6 +9,6 @@ import path from "path";
  * @returns The absolute path to the data file
  */
 export function dataPath(filename: string) {
-  const dir = process.env.DATA_DIR ?? path.join(__dirname, "../data");
+  const dir = process.env.DATA_DIR ?? path.join(__dirname, "../data/");
   return path.join(dir, filename);
 }

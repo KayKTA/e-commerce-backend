@@ -75,6 +75,9 @@ cartRouter.post("/items", requireAuth, async (req, res) => {
     const products = await productsStore.readAll();
     const productExists = products.some((p) => p.id === pid);
     if (!productExists) {
+        console.log('====================================');
+        console.log(pid);
+        console.log('====================================');
         return res.status(404).json({ error: "Product not found" });
     }
 

@@ -6,12 +6,11 @@ import crypto from "crypto";
 
 import { JsonStore } from "../lib/jsonStore";
 import type { User } from "../models/user.model";
+import { dataPath } from "../lib/dataPath";
 
 export const authRouter = Router();
 
-const usersStore = new JsonStore<User>(
-    path.join(__dirname, "../data/users.json")
-);
+const usersStore = new JsonStore<User>(dataPath("users.json"));
 
 /**
  * @swagger
