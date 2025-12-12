@@ -13,7 +13,8 @@
         "forceConsistentCasingInFileNames": true,
         // For nodejs:
         "types": [
-            "node"
+            "node",
+            "jest"
         ],
         "lib": [
             "ES2020"

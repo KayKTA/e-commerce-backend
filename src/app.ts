@@ -21,7 +21,7 @@ export function createApp() {
     app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
     // API routes
-    app.use("/auth", authRouter);
+    app.use(authRouter);
     app.use("/products", productsRouter);
     app.use("/cart", cartRouter);
     app.use("/wishlist", wishlistRouter);

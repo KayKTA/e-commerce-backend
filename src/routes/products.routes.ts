@@ -20,7 +20,7 @@ const productsStore = new JsonStore<Product>(path.join(__dirname, "../data/produ
  *       500:
  *         description: Internal server error
  */
-productsRouter.get("/products", requireAuth, async (_req, res) => {
+productsRouter.get("/", requireAuth, async (_req, res) => {
     try {
         const products = await productsStore.readAll();
         res.json(products);
@@ -107,7 +107,7 @@ productsRouter.get("/products/:id", requireAuth, async (req, res) => {
  *       500:
  *         description: Internal server error
  */
-productsRouter.post("/products", requireAuth, requireAdmin, async (req, res) => {
+productsRouter.post("/", requireAuth, requireAdmin, async (req, res) => {
     const { name, description, image, category, price, quantity } = req.body;
 
     if (!name || !price || !category || quantity === undefined) {
@@ -187,7 +187,7 @@ productsRouter.post("/products", requireAuth, requireAdmin, async (req, res) => 
  *       500:
  *         description: Internal server error
  */
-productsRouter.put("/products/:id", requireAuth, requireAdmin, async (req, res) => {
+productsRouter.put("/:id", requireAuth, requireAdmin, async (req, res) => {
     const { id } = req.params;
     const { name, description, image, category, price, quantity } = req.body;
 
@@ -239,7 +239,7 @@ productsRouter.put("/products/:id", requireAuth, requireAdmin, async (req, res) 
  *       500:
  *         description: Internal server error
  */
-productsRouter.delete("/products/:id", requireAuth, requireAdmin, async (req, res) => {
+productsRouter.delete("/:id", requireAuth, requireAdmin, async (req, res) => {
     const { id } = req.params;
 
     try {

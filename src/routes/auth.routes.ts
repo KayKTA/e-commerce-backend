@@ -2,7 +2,7 @@ import { Router } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import path from "path";
-import { v4 as uuid } from "uuid";
+import crypto from "crypto";
 
 import { JsonStore } from "../lib/jsonStore";
 import type { User } from "../models/user.model";
@@ -60,7 +60,7 @@ authRouter.post("/account", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser: User = {
-        id: uuid(),
+        id: crypto.randomUUID(),
         username,
         firstname,
         email,
