@@ -42,7 +42,8 @@
         "skipLibCheck": true,
     },
     "include": [
-        "src/**/*.ts" // Include all TypeScript files in the src directory
+        "src/**/*.ts",
+        "src/**/*.d.ts" // Include the source files
     ],
     "exclude": [
         "node_modules", // Exclude node_modules
