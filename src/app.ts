@@ -11,7 +11,10 @@ import { wishlistRouter } from "./routes/wishlist.route";
 export function createApp() {
     const app = express();
 
-    app.use(cors());
+    app.use(cors({
+        origin: process.env.CORS_ORIGIN?.split(",") ?? "*",
+        credentials: false,
+    }));
     app.use(express.json());
 
     // Health check endpoint
