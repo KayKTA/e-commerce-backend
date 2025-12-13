@@ -1,8 +1,10 @@
 [
   {
-  "username": "admin",
-  "firstname": "Admin",
-  "email": "admin@admin.com",
-  "password": "admin"
+    "id": "1a1e22d4-5e2e-4b39-9a0c-8a67ab3ac083",
+    "username": "admin",
+    "firstname": "Admin",
+    "email": "admin@admin.com",
+    "passwordHash": "$2b$10$8Do1r9b/JjUXPvIthtMaueTj721Qj.M56ZgfCpSYiWsZn5oqJ49qe",
+    "createdAt": 1765636724903
   }
 ]
